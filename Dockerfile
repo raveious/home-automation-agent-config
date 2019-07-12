@@ -1,6 +1,15 @@
 # Build environment for the application
 FROM alpine:3.8
 
+# Set some build time default values
+ARG AGENT_CONN_TYPE_DEFAULT=udp
+ARG AGENT_CONN_PORT_DEFAULT=12345
+ARG AGENT_DISC_PORT_DEFAULT=7400
+
+ENV AGENT_CONN_TYPE=$AGENT_CONN_TYPE_DEFAULT
+ENV AGENT_CONN_PORT=$AGENT_CONN_PORT_DEFAULT
+ENV AGENT_DISC_PORT=$AGENT_DISC_PORT_DEFAULT
+
 # Install build dependences
 RUN apk add --update --no-cache git cmake make build-base gcc g++ linux-headers net-tools
 
@@ -11,6 +20,7 @@ RUN cmake -DTHIRDPARTY=ON -DVERBOSE=ON -DEPROSIMA_BUILD_EXAMPLES=ON .. && make i
 
 # Hot fix until the agent can be moved into a real location
 WORKDIR /micro/build/uagent/src/agent-build
+#ADD agent.refs agent.refs
 CMD ./MicroXRCEAgent $AGENT_CONN_TYPE -p $AGENT_CONN_PORT -d --disport $AGENT_DISC_PORT -v 6 < /dev/null
 
 # Production container should only container the executable
