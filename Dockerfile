@@ -20,7 +20,7 @@ RUN cmake -DTHIRDPARTY=ON -DVERBOSE=ON -DEPROSIMA_BUILD_EXAMPLES=ON .. && make i
 
 # Hot fix until the agent can be moved into a real location
 WORKDIR /micro/build/uagent/src/agent-build
-#ADD agent.refs agent.refs
+ADD agent.refs agent.refs
 CMD ./MicroXRCEAgent $AGENT_CONN_TYPE -p $AGENT_CONN_PORT -d --disport $AGENT_DISC_PORT -v 6 < /dev/null
 
 # Production container should only container the executable
