@@ -1,26 +1,48 @@
 <profiles>
-    <participant profile_name="default_xrce_participant">
+    <participant profile_name="default_weather_participant">
         <rtps>
-            <name>default_xrce_participant</name>
+            <name>default_weather_participant</name>
         </rtps>
     </participant>
-    <data_writer profile_name="shapetype_data_writer">
+<!--    <data_writer profile_name="shapetype_data_writer">
         <topic>
             <kind>WITH_KEY</kind>
             <name>Square</name>
             <dataType>ShapeType</dataType>
         </topic>
-    </data_writer>
-    <data_reader profile_name="shapetype_data_reader">
+    </data_writer> -->
+    <data_reader profile_name="weather_conditions_data_reader">
         <topic>
             <kind>WITH_KEY</kind>
-            <name>Square</name>
-            <dataType>ShapeType</dataType>
+            <name>/weather/conditions</name>
+            <dataType>WeatherConditions</dataType>
         </topic>
     </data_reader>
-    <topic profile_name="shapetype_topic">
+    <data_reader profile_name="weather_forcast_hourly_data_reader">
+        <topic>
+            <kind>WITH_KEY</kind>
+            <name>/weather/forcast/hourly</name>
+            <dataType>WeatherForcast</dataType>
+        </topic>
+    </data_reader>
+    <topic profile_name="weather_conditions_topic">
         <kind>WITH_KEY</kind>
-        <name>Square</name>
-        <dataType>ShapeType</dataType>
+        <name>/weather/conditions</name>
+        <dataType>WeatherCondition</dataType>
+    </topic>
+    <topic profile_name="weather_alerts_topic">
+        <kind>WITH_KEY</kind>
+        <name>/weather/alerts</name>
+        <dataType>WeatherAlert</dataType>
+    </topic>
+    <topic profile_name="weather_forcast_hourly_topic">
+        <kind>WITH_KEY</kind>
+        <name>/weather/forcast/hourly</name>
+        <dataType>WeatherForcast</dataType>
+    </topic>
+    <topic profile_name="weather_forcast_daily_topic">
+        <kind>WITH_KEY</kind>
+        <name>/weather/forcast/daily</name>
+        <dataType>WeatherForcast</dataType>
     </topic>
 </profiles>
